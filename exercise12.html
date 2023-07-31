@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 12</title>
+</head>
+<body>
+  <script>
+    function stringToUpper(string){
+      let toUpper = string.toUpperCase()
+      return toUpper
+    }
+
+    function aboveFreezing(temps){
+      let tempsAboveFreezing = temps.filter(function (temp){
+        return temp > 6;
+      })
+      
+
+      return tempsAboveFreezing;
+    }
+    let foods =[{name:'Apple',color: 'red'},{name: 'Orange', color: 'orange'},{name: 'Egg', color: 'white'},{name: 'Strawberry', color: 'red'},{name: 'Onion',color: 'brown'}];
+
+    function removeRed(foodArray){
+      let redRemoved = foodArray.filter(function (shade){
+        return shade.color !== 'red'
+      });
+
+      return redRemoved;
+    }
+    
+    console.log(removeRed(foods))
+  </script>
+</body>
+</html>

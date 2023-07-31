@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khalid's Todo App</title>
+</head>
+<body>
+  <input id="todo-title" type="text">
+  <button onclick="addTodo()">Add Todo</button>
+  <input id="date-picker" type="date">
+
+  <div id="todo-list"></div>
+
+<script>
+  //Model
+  //if local storage have a todos array then use it 
+  //otherwise use the default array
+
+  let todos;
+  // retrieve local storage
+  const savedTodos = JSON.parse(localStorage.getItem('todos'));
+  // check if its an array
+
+  if (Array.isArray(savedTodos)){
+    todos = savedTodos;
+  }
+  else{
+    todos = [{
+      title:'Get groceries',
+      dueDate:'2021-10-04',
+      id: 'id1'
+    }, {
+      title:'Wash car',
+      dueDate: '2021-02-03',
+      id: 'id2'
+    }, {title:'Make dinner',
+        dueDate: '2021-03-04',
+        id: 'id3'
+    }];
+  }
+
+  
+
+  //Creates todo
+  function createTodo(title, dueDate){
+    const id = '' + new Date().getTime()
+    todos.push({
+      title: title,
+      dueDate: dueDate,
+      id: id
+    });
+
+    saveTodos();
+  }
+
+  //Delete todo
+  function removeTodo(idToDelete){
+    todos = todos.filter(function(todo){
+      if (todo.id === idToDelete){
+        return false
+      }
+      else{
+        return true;
+      }
+    })
+  };
+
+  function saveTodos(){
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }
+
+  // View
+
+  function render(){
+    document.getElementById('todo-list').innerHTML = '';
+
+    todos.forEach(function(todo){
+    const element = document.createElement('div');
+    let deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete'
+    
+    element.innerText = todo.title + ' ' + todo.dueDate;
+    document.getElementById('todo-list').appendChild(element);
+    element.appendChild(deleteButton);
+    deleteButton.onclick = deletetodo;    
+    deleteButton.id = todo.id;
+    deleteButton.style = 'margin-left: 12px;';
+    
+  })
+  };
+
+  //Controller
+
+   function deletetodo(event){
+    const deleteButton = event.target;
+    const idToDelete = deleteButton.id;
+    
+    removeTodo(idToDelete);
+
+    render();
+  }
+
+  render();
+
+  function addTodo(TodoTitle){
+    const textbox = document.getElementById('todo-title');
+    const title = textbox.value;
+    const datePicker = document.getElementById('date-picker');
+    const dueDate = datePicker.value;
+
+    createTodo(title, dueDate)
+    
+    
+    render();
+  }
+
+ 
+ 
+ 
+</script>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excercise 11</title>
+</head>
+<body>
+  <div>
+    khalid
+  </div>
+  <script>
+    let total = 0;
+    
+    function createCart(foodPrices){
+      let foods = Object.keys(foodPrices);
+      
+      foods.forEach(function (foodItem){
+        let foodPriceId = []
+        let foodPrice = foodPrices[foodItem]
+        let id = new Date().getTime()
+        let element = document.createElement('div');
+        element.innerText = foodItem + ' ' + '$' + foodPrice;
+        let addButton = document.createElement('button');
+        addButton.innerText = 'Add';
+        addButton.id = id;
+        addButton.onclick = function (){
+          let totalValue = document.createElement('div');
+          totalValue.id = 'total';
+         
+          total = total + foodPrice
+          
+          totalValue.innerText = 'Total = ' + '$' + total;
+          
+          document.body.appendChild(totalValue)
+        }
+        element.appendChild(addButton);
+        document.body.appendChild(element);
+        foodPriceId.push({name: foodItem, price: foodPrices[foodItem], id:id})
+        console.log(foodPriceId)
+      })
+    };
+
+    createCart({Apple:3, Orange:4, Egg:2});
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 10</title>
+</head>
+<body>
+  <div id="receipt"></div>
+  <script>
+    document.getElementById('receipt').innerHTML = '';
+    let result = 0
+    let cart = [{name:'Apple',price: 4,quantity: 2},{name:'Orange',price: 3,quantity: 3}]
+    cart.forEach(function cartTotal(item){
+      
+      displayReceipt(item.name,item.price,item.quantity);
+    })
+    function displayReceipt(itemName,itemPrice,itemQuantity){
+      let element = document.createElement('div');
+      let subTotal = itemPrice * itemQuantity
+      element.innerText = itemName + '$'+itemPrice + ' * ' + itemQuantity + ' = ' + '$' + subTotal ;
+      document.getElementById('receipt').appendChild(element)
+
+    }
+
+    cart.forEach( function total(item){
+      let sumCost = item.price * item.quantity;
+      result += sumCost
+      
+    })
+    let totalDiv = document.createElement('div');
+      totalDiv.innerText = 'Cart total = ' + '$' + result;
+      document.getElementById('receipt').appendChild(totalDiv)
+  </script>
+</body>
+</html>

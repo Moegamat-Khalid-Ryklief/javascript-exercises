@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excercises</title>
+</head>
+<body>
+  
+  <button onclick="addToCart('Apple')">Apple</button>
+  <button onclick="addToCart('Tomato')">Tomato</button>
+  <button onclick="addToCart('Eggs')">Eggs</button>
+  <button onclick="clearbag()">Clear</button>
+  <div id="cart"></div>
+
+  <input id="userInput" type="text">
+  <button onclick="convertToCm()">Convert to cm</button>
+  <button onclick="convertToInch()">Convert to inch</button>
+  <div id="result"></div>
+
+  <script>
+    function convertToInch(){
+      let newDiv = document.createElement('div');
+      let userInputValue = document.getElementById('userInput').value
+      let convert = +userInputValue / 2.54;
+      newDiv.innerText = convert + ' in'
+      document.getElementById('result').appendChild(newDiv);
+    }
+    function convertToCm(){
+      let newDiv = document.createElement('div');
+      let userInputValue = document.getElementById('userInput').value
+      let convert = +userInputValue * 2.54;
+      newDiv.innerText = convert + ' cm'
+      document.getElementById('result').appendChild(newDiv);
+    }
+    
+
+    const cart = document.getElementById('cart')
+   
+
+    function addToCart(name){
+      
+      let element = document.createElement('div');
+      element.innerText = name;
+      document.getElementById('cart').appendChild(element);
+    };
+
+    function clearbag(){
+      cart.innerHTML = '';
+    };
+  </script>
+</body>
+</html>

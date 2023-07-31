@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 13</title>
+</head>
+<body>
+  <script>
+    numberArray = [-1,300000,3,4,5,6,7,8,9,10,500]
+    function max(numbers){
+      let maxNumber = -Infinity;
+      numbers.filter(function (number){
+        if (number > maxNumber){
+          maxNumber = number;
+        }
+        
+      })
+      return maxNumber
+    }
+
+    function min (numbers){
+      let minNumber = Infinity
+      numbers.filter(function (number){
+        if (number < minNumber && number >= 0){
+          minNumber = number
+        }
+      })
+      return minNumber
+
+    }
+    console.log(min(numberArray))
+    console.log(max(numberArray))
+
+    function pickApples(strings){
+      let applesPicked = 0
+      let filteredArray = strings.filter(function (string){
+        if (applesPicked >= 2){
+          return true
+        }
+        else if (string === 'apple'){
+          applesPicked += 1
+         return false
+        }
+
+        else{
+          return true
+        }
+      })
+      return filteredArray
+    }
+
+    function pickFruits(strings){
+      let orangePick = 0
+      let applePick = 0
+      let filterArray = strings.filter(function (string){
+        if (applePick >= 2){
+          return true
+        }
+        else if (string === 'apple'){
+          applePick += 1
+         return false
+        }
+        else if (string === 'orange'){
+          orangePick += 1
+          return false
+        }
+
+        else{
+          return true
+        }
+      })
+      return filterArray
+    }
+
+    function pickLastApples(strings){
+      let pickApples = 0;
+      
+      let newArray = strings.filter(function (string){
+        if (pickApples >= 2){
+        
+          return true;
+        }
+        else if (string === 'apple'){
+          pickApples += 1;
+          return false;
+        }
+        else{
+          return true;
+        }
+      })
+
+      return newArray.reverse();
+
+    }
+
+    console.log(pickApples(['cherry','apple','orange','apple','banana','apple']))
+    console.log(pickFruits(['cherry','apple','orange','apple','banana','apple']))
+   
+    console.log(pickLastApples(['cherry','apple','orange','apple','banana','apple']));
+  </script>
+</body>
+</html>
